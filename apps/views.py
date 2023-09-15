@@ -1,3 +1,4 @@
+from django.contrib.admindocs.views import ModelDetailView
 from django.contrib.auth import login
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
@@ -112,3 +113,11 @@ class CategoryProductsView(DetailView):
     model = Category
     template_name = 'category_products.html'
     context_object_name = 'category_posts'
+
+
+class CategorySecond(ModelDetailView):
+    pass
+
+
+class CategorySecond3(ModelDetailView):
+    pass

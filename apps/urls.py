@@ -17,3 +17,5 @@ urlpatterns = [
     path('category/<slug:slug>/', CategoryProductsView.as_view(), name='category_products'),
 
 ]
+
+# TODO remove module when we have support!
