@@ -1,0 +1,86 @@
+{% block content %}
+    {% load static %}
+    {% include 'header.html' %}
+
+    <!-- Modal -->
+    <!-- Your modal content -->
+
+    <!-- Start Content -->
+    <!-- Your content -->
+
+    <div class="container py-5">
+        <div class="row">
+            <!-- Update the 'for' loop in the template as follows -->
+            {% for post in category_posts.products.all %}
+                <div class="col-12 col-md-4 mb-4">
+                    <div class="card h-100">
+                        <a href="{% url 'shop_detail' slug=post.slug %}">
+                            <img src="{{ post.image.url }}" class="card-img-top" alt="...">
+                        </a>
+                        <div class="card-body">
+                            <ul class="list-unstyled d-flex justify-content-between">
+                                <li>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-muted fa fa-star"></i>
+                                    <i class="text-muted fa fa-star"></i>
+                                </li>
+                                <li class="text-muted text-right">{{ post.price }}</li>
+                                <li class="text-muted text-right">{{ post.category.name }}</li>
+                            </ul>
+                            <a href="{% url 'shop_detail' slug=post.slug %}"
+                               class="h2 text-decoration-none text-dark">{{ post.name }}</a>
+                            <p class="card-text">
+                                {{ post.short_desc }}
+                            </p>
+                            <p class="text-muted">{{ post.view_count }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                {% if is_paginated %}
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-end">
+                            {% if page_obj.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page=1">First</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                                </li>
+                            {% endif %}
+                            {% for num in pagination_range %}
+                                {% if page_obj.number == num %}
+                                    <li class="page-item active">
+                                        <span class="page-link">{{ num }}</span>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                            {% if page_obj.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <!-- Start Brands -->
+    <!-- Your brands section -->
+
+    {% include 'footer.html' %}
+{% endblock %}

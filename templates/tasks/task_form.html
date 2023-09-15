@@ -1,0 +1,25 @@
+<!-- tasks/templates/tasks/product_form.html -->
+<head>
+    <title>Create Product</title>
+</head>
+<body>
+    <h1>Create a New Product</h1>
+<form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create Product</button>
+    </form>
+    {% if form.errors %}
+        <div class="errors">
+            <h2>Errors:</h2>
+            <ul>
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+</body>
+</html>
