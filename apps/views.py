@@ -121,3 +121,7 @@ class CategorySecond(ModelDetailView):
 
 class CategorySecond3(ModelDetailView):
     pass
+
+
+class CategorySecond34(ModelDetailView):
+    pass
