@@ -22,7 +22,7 @@ class ProductAdmin(admin.ModelAdmin):
     exclude = ('created_at', 'slug',)
     readonly_fields = ('created_at', 'view_count')
 
-    @admin.display(description='Image')
+    @admin.display(description='Entered AT')
     def product_image(self, obj: Product):
         return format_html(
             f'<img style="border-radius: 15px; width:120px; height:80px;" src="{obj.image.url}" alt="{obj.name}">')
